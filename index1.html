@@ -1,0 +1,66 @@
+<html>
+    <style>
+        body{
+            background-color: #f5f5f5;
+        }
+        /*div{
+            background-color: #fff;
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #000;
+        }*/
+        input{
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        button{
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function addTodo(){
+            let title = document.getElementById("title").value;
+            let description = document.getElementById("description").value;
+            //one way of doing it and a ugly way
+            /*document.getElementById("container").innerHTML += `
+                <div>
+                    <h3>${title}</h3>
+                    <p>${description}</p>
+                </div>
+            `;*/
+            //another way of doing it using createElement
+            let outerDiv = document.createElement("div");  //creates a div element which is not available in the DOM not a part of the dom tree
+            //outerDiv.innerHTML = title;
+            //document.getElementById("container").appendChild(outerDiv); //appends the div element to the container div
+            let titleDiv = document.createElement("div");
+            titleDiv.innerHTML = title;
+            let descriptionDiv = document.createElement("div");
+            descriptionDiv.innerHTML = description;
+            let button = document.createElement("button");
+            button.innerHTML = "Mark as done";
+            outerDiv.appendChild(titleDiv);
+            outerDiv.appendChild(descriptionDiv);
+            outerDiv.appendChild(button);
+            document.getElementById("container").appendChild(outerDiv);
+
+        }
+    </script>
+
+    <div>
+        <input type="text", placeholder="title" id="title"><br><br>
+        <input type="text", placeholder="description" id="description"><br><br>
+        <button onclick="addTodo()">Add Todo</button>
+        <div id="container"></div>
+
+
+    </div>
+</html>
